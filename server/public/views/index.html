@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="ticketApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Ticket Generator</title>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="assets/scripts/client.min.js"></script>
+
+    <link res="stylesheet" href="stylesheets/style.css" />
+  </head>
+  <body ng-controller="TicketController">
+
+ <div class="header">
+   <span>header</span>
+   hello test test
+ </div>
+
+  <div class="newTicket">
+    <form>
+      <input type="text" placeholder="Name" required="required" ng-model="ticket.name"><br>
+      <input type="text" placehoder="Type" required="required" ng-model="ticket.type"><br>
+      <input type="text" placehoder="Priority" required="required" ng-model="ticket.priority"><br>
+      <input type="text" placehoder="Description" required="required" ng-model="ticket.description"><br>
+      <input type="text" placehoder="Assignee" required="required" ng-model="ticket.assignee"><br>
+      <input type="text" placehoder="Reporter" required="required" ng-model="ticket.reporter"><br>
+     <input type="submit" ng-click="createTicket()">
+    </form>
+  </div>
+  <div class="tickets" ng-repeat="tickets in allTickets">
+    {{tickets}}
+  </div>
+
+  </body>
+</html>
