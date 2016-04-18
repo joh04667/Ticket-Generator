@@ -6,3 +6,46 @@ body {
 a {
   color: #00B7FF;
 }
+
+ .bold {
+   font-weight: bold;
+ }
+
+ .tickets {
+   overflow: auto;
+ }
+ .newTicket {
+   margin-bottom: 20px;
+ }
+
+ .header {
+   text-align: center;
+ }
+
+.submit {
+width: 183px;
+height: 30px;
+transition: all .25s ease-in-out;
+}
+
+.submit:hover {
+background-color: lightblue;
+}
+
+.complete {
+  transition: all .25s ease-in-out;
+}
+
+.complete:hover {
+  background-color: limegreen;
+  box-shadow: 1px 1px 3px black;
+}
+
+
+.task {
+  word-wrap: break-word;
+}
+
+.even {
+  background-color: #cce5ff;
+}

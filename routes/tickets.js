@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
+
 router.post('/new', function(req, res){
   var ticket = new Ticket({
     name: req.body.name,
@@ -43,5 +44,16 @@ router.get('/', function(req, res){
   });
 });
 
+router.delete('/delete/:id', function(request, response){
+  console.log('Delete ticket', request.params.id);
+  Ticket.findOneAndRemove({_id: request.params.id}, function(err){
+    if (err){
+      console.log('delete error', err);
+    }
+  });
+  response.sendStatus(200);
+});
 
+
+// export
 module.exports = router;
