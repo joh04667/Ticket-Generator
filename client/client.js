@@ -4,6 +4,9 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
   $scope.ticket = {};
   $scope.allTickets = [];
   $scope.chunkedTickets = [];
+  $scope.formActive = false;
+  $scope.btnText = "New Ticket";
+  $scope.slideClass = "";
 
   $scope.createTicket = function() {
     $http.post('/tickets/new', $scope.ticket).then(function(response) {
@@ -11,7 +14,6 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
       $scope.resetForm();
       $scope.getData();
     });
-
   };
 
 
@@ -20,7 +22,6 @@ $scope.getData = function() {
   $http.get('/tickets').then(function(response) {
     $scope.allTickets = response.data;
     $scope.chunkedTickets = $scope.chunk($scope.allTickets, 3);
-
   });
 };
 
@@ -35,6 +36,18 @@ $scope.deleteTicket = function(ticket) {
     console.log('deleted ticket');
     $scope.getData();
 });
+};
+
+$scope.toggleForm = function() {
+  if($scope.formActive) {
+    $scope.formActive = false;
+    $scope.slideClass = "";
+    $scope.btnText = "New Ticket";
+  } else {
+    $scope.formActive = false;
+    $scope.slideClass = "slide";
+    $scope.btnText = "Hide Form";
+  }
 };
 
 

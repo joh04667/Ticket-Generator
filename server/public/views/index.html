@@ -10,42 +10,49 @@
   </head>
   <body ng-controller="TicketController">
 
- <div class="header">
+ <div class="page-header">
    <h2>Ticket Tracking System (TTS)</h2>
-
  </div>
+<div class="formContainer">
 
-  <div class="newTicket">
+  <button class="btn submit" ng-click="toggleForm()">{{btnText}}</button>
+
+  <div class="newTicket" ng-class="slideClass" ng-show="formActive">
     <form>
       <input type="text" placeholder="Name" required="required" ng-model="ticket.name"><br>
-      <input type="text" placehoder="Type" required="required" ng-model="ticket.type"><br>
+      <input type="text" placeholder="Type" required="required" ng-model="ticket.type"><br>
       <!-- <select ng.model="ticket.priority" name="form">
         <option value="Low">Low</option>
         <option value="Normal">Normal</option>
         <option value="High">High</option>
       </select><br> -->
-      <input type="text" placehoder="Priority" required="required" ng-model="ticket.priority"><br>
-      <input type="text" placehoder="Description" required="required" ng-model="ticket.description"><br>
-      <input type="text" placehoder="Assignee" required="required" ng-model="ticket.assignee"><br>
-      <input type="text" placehoder="Reporter" required="required" ng-model="ticket.reporter"><br>
+      <input type="text" placeholder="Priority" required="required" ng-model="ticket.priority"><br>
+      <input type="text" class="description" placeholder="Description" required="required" ng-model="ticket.description"><br>
+      <input type="text" placeholder="Assignee" required="required" ng-model="ticket.assignee"><br>
+      <input type="text" placeholder="Reporter" required="required" ng-model="ticket.reporter"><br>
      <input type="submit" ng-click="createTicket()" class="btn submit">
     </form>
   </div>
+</div>
   <!-- <div class="row"> -->
   <div class="well tickets" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="tickets in chunkedTickets">
     <!-- <div ng-repeat="ticket in tickets"> -->
       <div class="col-sm-4 task" ng-repeat="ticket in tickets">
       <h4>{{ticket.name}}</h4>
-      <p><span class="bold">Type:</span> {{ticket.type}}</p>
+      <p class="updated" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</p>
+
+      <p class="type"><span class="bold">Type:</span> {{ticket.type}}</p>
       <p><span class="bold">Priority:</span> {{ticket.priority}}</p>
       <p><span class="bold">Description:</span> {{ticket.description}}</p>
       <p><span class="bold">Assignee:</span> {{ticket.assignee}}</p>
       <p><span class="bold">Reporter:</span> {{ticket.reporter}}</p>
       <p><span class="bold">Date Created:</span> {{prettyDate(ticket.created)}}</p>
-      <p ng-if="tickets.updated"><span class="bold">Date Updated:</span> {{ticket.updated}}</p>
       <button class="btn complete" ng-click="deleteTicket(ticket)">Complete</button>
+      <button class="btn btn-danger edit" ng-click="edit(ticket)">Edit</button>
+
       </div>
-      <!-- <div class="clearfix" ng-if="$index % 3 === 0"></div> -->
+      <!-- horiz rule -->
+      <hr class="clearfix">
     </div>
 
 

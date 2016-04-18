@@ -30,10 +30,18 @@ transition: all .25s ease-in-out;
 
 .submit:hover {
 background-color: lightblue;
+font-size: 15px;
+}
+
+.submit:active {
+  font-size: 12px;
+  transition: font-size .2s linear;
 }
 
 .complete {
   transition: all .25s ease-in-out;
+  margin-bottom: 10px;
+
 }
 
 .complete:hover {
@@ -41,11 +49,66 @@ background-color: lightblue;
   box-shadow: 1px 1px 3px black;
 }
 
-
-.task {
-  word-wrap: break-word;
+.edit {
+  margin-bottom: 10px;
 }
 
+.updated {
+  font-size: 10px;
+  color: red;
+  margin-top: 1px;
+}
+
+h4 {
+  margin-bottom: 1px;
+  font-size: 21px;
+  font-weight: bold;
+}
+.task {
+  word-wrap: break-word;
+  background-color: #fbfbfb;
+  border-radius: 4px;
+  border: solid 1px #aaaaaa;
+  border-left: -5px;
+  border-right: -5px;
+  /*display: flex;
+  flex: 1 0 auto;*/
+}
+
+.formContainer {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.type {
+  margin-top: 13px;
+}
 .even {
   background-color: #cce5ff;
+}
+
+.newTicket {
+  max-height: 0;
+  transition: all 2s ease-in;
+}
+
+.newTicket.slide {
+  max-height: 1000px;
+}
+
+hr {
+  height: 1;
+}
+
+.description {
+  height: 23px;
+  transition: all .1s ease-out;
+}
+
+.description:focus {
+  height: 80px;
+}
+
+.page-header {
+  text-align:center;
 }
