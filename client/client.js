@@ -33,6 +33,8 @@ $scope.getData = function() {
   $http.get('/tickets').then(function(response) {
     $scope.allTickets = response.data;
     $scope.chunkedTickets = $scope.chunk($scope.allTickets, 3);
+    $scope.nodiv = Boolean($scope.allTickets);
+    console.log($scope.nodiv);
   });
 };
 

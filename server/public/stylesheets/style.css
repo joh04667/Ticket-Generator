@@ -95,12 +95,37 @@ h4 {
 
 .newTicket {
   max-height: 0;
-  transition: all 2s ease-in;
+  transition: all .5s linear;
+
 }
 
-.newTicket.slide {
+.slide {
   max-height: 1000px;
+  opacity: 1 !important;
+  transition: all 1s ease-in;
 }
+
+.topForm {
+  /*max-height: 0;*/
+  opacity: 0;
+  transition: all .2s ease-in;
+
+}
+
+.newtix {
+  text-align: center;
+  transition: width .25s ease-in;
+}
+
+
+
+.newtix:focus {
+  text-align:justify;
+  width: 230px;
+
+}
+
+
 
 hr {
   height: 1;
@@ -108,11 +133,20 @@ hr {
 
 .description {
   height: 23px;
+  line-height: 23px;
   transition: all .1s ease-out;
+  padding-left: 0;
+  padding-top: 0;
+  word-break: break-all;
 }
 
 .description:focus {
   height: 80px;
+  line-height: 80px;
+  text-align: left;
+  vertical-align: text-top;
+  padding-left: 0;
+  word-break: break-all;
 }
 
 .page-header {

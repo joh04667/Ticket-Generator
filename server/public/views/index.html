@@ -17,25 +17,20 @@
 
   <button class="btn submit" ng-click="toggleForm()">{{btnText}}</button>
 
-  <div class="newTicket" ng-class="slideClass" ng-show="formActive">
-    <form>
-      <input type="text" placeholder="Name" required="required" ng-model="ticket.name"><br>
-      <input type="text" placeholder="Type" required="required" ng-model="ticket.type"><br>
-      <!-- <select ng.model="ticket.priority" name="form">
-        <option value="Low">Low</option>
-        <option value="Normal">Normal</option>
-        <option value="High">High</option>
-      </select><br> -->
-      <input type="text" placeholder="Priority" required="required" ng-model="ticket.priority"><br>
-      <input type="text" class="description" placeholder="Description" required="required" ng-model="ticket.description"><br>
-      <input type="text" placeholder="Assignee" required="required" ng-model="ticket.assignee"><br>
-      <input type="text" placeholder="Reporter" required="required" ng-model="ticket.reporter"><br>
+  <div class="newTicket" ng-class="slideClass" > <!--ng-show="formActive"-->
+    <form name="topForm" class="topForm" ng-class="slideClass">
+      <input class="newtix" type="text" placeholder="Name" required="required" ng-model="ticket.name"><br>
+      <input class="newtix" type="text" placeholder="Type" required="required" ng-model="ticket.type"><br>
+      <input class="newtix" type="text" placeholder="Priority" required="required" ng-model="ticket.priority"><br>
+      <input class="newtix description" type="text" placeholder="Description" required="required" ng-model="ticket.description"><br>
+      <input class="newtix" type="text" placeholder="Assignee" required="required" ng-model="ticket.assignee"><br>
+      <input class="newtix" type="text" placeholder="Reporter" required="required" ng-model="ticket.reporter"><br>
      <input type="submit" ng-click="createTicket()" class="btn submit">
     </form>
   </div>
 </div>
 <!-- if no work -->
-  <div class="well lg top" ng-if="!allTickets.length">
+  <div class="well top" ng-if="!allTickets.length">
     <h1>You have no new work.</h1>
   </div>
 
@@ -44,8 +39,8 @@
       <div class="col-sm-4 task clearfix" ng-repeat="ticket in tickets">
 
         <form name="editForm" class="editForm">
-      <h4 ng-show="!ticket.edit">{{ticket.name}}</h4>
-      <h4 ng-show="ticket.edit">Ticket Name:</h4>
+          <h4 ng-show="!ticket.edit">{{ticket.name}}</h4>
+          <h4 ng-show="ticket.edit">Ticket Name:</h4>
         <input name="editForm" type="text" placeholder="Name" ng-show="ticket.edit" ng-model="edit.name"  required="required">
 
       <p class="updated" ng-show="!ticket.edit" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</p>
