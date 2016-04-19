@@ -9,6 +9,9 @@ a {
 
  .bold {
    font-weight: bold;
+   margin-bottom: 4px;
+   margin-top: 6px;
+   font-size: 16px;
  }
 
  .tickets {
@@ -49,9 +52,12 @@ font-size: 15px;
   box-shadow: 1px 1px 3px black;
 }
 
-.edit {
+.edit, .cancel, .save {
   margin-bottom: 10px;
 }
+
+
+
 
 .updated {
   font-size: 10px;
@@ -110,5 +116,24 @@ hr {
 }
 
 .page-header {
+  width: 100%;
   text-align:center;
+}
+
+.editForm > input {
+  width:90%;
+}
+
+.top {
+  text-align: center;
+  margin: auto;
+  height: 150px;
+  display: block;
+  transition: all 2s ease-in;
+
+}
+
+h1 {
+  vertical-align: middle;
+
 }

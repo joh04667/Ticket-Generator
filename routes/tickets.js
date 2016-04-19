@@ -33,6 +33,33 @@ router.post('/new', function(req, res){
   });
 });
 
+// edit
+router.put('/edit', function(req, res){
+  var ticket = new Ticket({
+    _id: req.body._id,
+    name: req.body.name,
+    type: req.body.type,
+    priority: req.body.priority,
+    description: req.body.description,
+    assignee: req.body.assignee,
+    reporter: req.body.reporter,
+    created: req.body.created,
+    updated: new Date()
+  });
+  console.log('saving', ticket._id);
+
+Ticket.findOneAndUpdate({"_id": ticket._id}, ticket, {new: true}, function(err, ticket) {
+  if (err) {
+    console.log('got an error', err);
+  }
+
+  // at this point person is null.
+});
+
+});
+
+
+
 router.get('/', function(req, res){
   // response.send('assignments now working');
   Ticket.find({}, function(err, tickets){
@@ -53,6 +80,8 @@ router.delete('/delete/:id', function(request, response){
   });
   response.sendStatus(200);
 });
+
+
 
 
 // export

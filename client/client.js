@@ -7,7 +7,9 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
   $scope.formActive = false;
   $scope.btnText = "New Ticket";
   $scope.slideClass = "";
+  $scope.edit = {};
 
+// post new ticket
   $scope.createTicket = function() {
     $http.post('/tickets/new', $scope.ticket).then(function(response) {
       console.log('saved ticket', response);
@@ -16,6 +18,15 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
     });
   };
 
+// edits current ticket
+$scope.saveTicket = function(ticket) {
+  console.log(ticket, 'save');
+  $http.put('tickets/edit', ticket).then(function(response){
+    console.log($scope.allTickets);
+    $scope.getData();
+  });
+  $scope.allTickets.forEach(function(s) {s.edit = false;});
+};
 
 // gets all tickets on DB
 $scope.getData = function() {
@@ -31,6 +42,7 @@ $scope.prettyDate = function(date) {
   return temp[1] + '-' + temp[2] + '-' + temp[0];
 };
 
+//delete
 $scope.deleteTicket = function(ticket) {
   $http.delete('/tickets/delete/' + ticket._id).then(function(response) {
     console.log('deleted ticket');
@@ -38,13 +50,31 @@ $scope.deleteTicket = function(ticket) {
 });
 };
 
+// put changes to db
+$scope.editTicket = function(ticket) {
+  // clear any edit values
+  $scope.allTickets.forEach(function(s) {s.edit = false;});
+  // get this index and this object
+  $scope.edit = $scope.allTickets[$scope.allTickets.indexOf(ticket)];
+   $scope.allTickets[$scope.allTickets.indexOf(ticket)].edit = true;
+
+};
+
+$scope.cancelEdit = function(ticket) {
+  var index = $scope.allTickets.indexOf(ticket);
+  $scope.allTickets.forEach(function(s) {s.edit = false;});
+  $scope.getData();
+};
+
+
+
 $scope.toggleForm = function() {
   if($scope.formActive) {
     $scope.formActive = false;
     $scope.slideClass = "";
     $scope.btnText = "New Ticket";
   } else {
-    $scope.formActive = false;
+    $scope.formActive = true;
     $scope.slideClass = "slide";
     $scope.btnText = "Hide Form";
   }

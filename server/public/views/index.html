@@ -10,9 +10,9 @@
   </head>
   <body ng-controller="TicketController">
 
- <div class="page-header">
+ <header class="page-header">
    <h2>Ticket Tracking System (TTS)</h2>
- </div>
+ </header>
 <div class="formContainer">
 
   <button class="btn submit" ng-click="toggleForm()">{{btnText}}</button>
@@ -34,30 +34,57 @@
     </form>
   </div>
 </div>
-  <!-- <div class="row"> -->
+<!-- if no work -->
+  <div class="well lg top" ng-if="!allTickets.length">
+    <h1>You have no new work.</h1>
+  </div>
+
+  <!-- repeat three per well -->
   <div class="well tickets" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="tickets in chunkedTickets">
-    <!-- <div ng-repeat="ticket in tickets"> -->
-      <div class="col-sm-4 task" ng-repeat="ticket in tickets">
-      <h4>{{ticket.name}}</h4>
-      <p class="updated" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</p>
+      <div class="col-sm-4 task clearfix" ng-repeat="ticket in tickets">
 
-      <p class="type"><span class="bold">Type:</span> {{ticket.type}}</p>
-      <p><span class="bold">Priority:</span> {{ticket.priority}}</p>
-      <p><span class="bold">Description:</span> {{ticket.description}}</p>
-      <p><span class="bold">Assignee:</span> {{ticket.assignee}}</p>
-      <p><span class="bold">Reporter:</span> {{ticket.reporter}}</p>
+        <form name="editForm" class="editForm">
+      <h4 ng-show="!ticket.edit">{{ticket.name}}</h4>
+      <h4 ng-show="ticket.edit">Ticket Name:</h4>
+        <input name="editForm" type="text" placeholder="Name" ng-show="ticket.edit" ng-model="edit.name"  required="required">
+
+      <p class="updated" ng-show="!ticket.edit" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</p>
+
+      <p class="bold">Type:</p>
+      <p class="type" ng-show="!ticket.edit">{{ticket.type}}</p>
+        <input name="editForm" type="text" placeholder="Type" ng-show="ticket.edit" ng-model="edit.type"  required="required">
+
+      <p class="bold">Priority:</p>
+      <p ng-show="!ticket.edit">{{ticket.priority}}</p>
+        <input name="editForm" type="text" placeholder="Priority" ng-show="ticket.edit" ng-model="edit.priority"  required="required">
+
+      <p class="bold">Description:</p>
+      <p ng-show="!ticket.edit">{{ticket.description}}</p>
+        <input name="editForm" class="description" type="text" placeholder="Description" ng-show="ticket.edit" ng-model="edit.description" required="required">
+
+      <p class="bold">Assignee:</p>
+      <p ng-show="!ticket.edit">{{ticket.assignee}}</p>
+        <input name="editForm" type="text" placeholder="Assignee" ng-show="ticket.edit" ng-model="edit.assignee" required="required">
+
+      <p class="bold">Reporter:</p>
+      <p ng-show="!ticket.edit">{{ticket.reporter}}</p>
+        <input name="editForm" type="text" placeholder="Reporter" ng-show="ticket.edit" ng-model="ticket.reporter" ng-value="edit.reporter" required="required">
+
       <p><span class="bold">Date Created:</span> {{prettyDate(ticket.created)}}</p>
-      <button class="btn complete" ng-click="deleteTicket(ticket)">Complete</button>
-      <button class="btn btn-danger edit" ng-click="edit(ticket)">Edit</button>
 
+      <button class="btn complete" ng-show="!ticket.edit" ng-click="deleteTicket(ticket)">Complete</button>
+      <input  name="editForm" value="Save" type="submit" class="btn btn-success save" ng-show="ticket.edit" ng-click="saveTicket(ticket)" />
+      <button class="btn btn-danger edit" ng-show="!ticket.edit" ng-click="editTicket(ticket)">Edit</button>
+      <input name="editForm" type="submit" value="Cancel" class="btn btn-default cancel" ng-show="ticket.edit" ng-click="cancelEdit(ticket)" >
+
+        </form>
       </div>
       <!-- horiz rule -->
-      <hr class="clearfix">
+      <div class="clearfix"></div>
     </div>
 
 
-<!-- </div> -->
-<!-- </div> -->
+
 
   </body>
 </html>
