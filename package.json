@@ -14,11 +14,9 @@
     "express": "^4.13.4",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
-    "jade": "~1.11.0",
     "mongoose": "^4.4.12",
     "morgan": "~1.6.1",
     "name-parser": "0.0.1",
-    "serve-favicon": "~2.3.0"
   },
   "main": "app.js",
   "devDependencies": {},
