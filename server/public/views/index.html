@@ -36,14 +36,19 @@
 
   <!-- repeat three per well -->
   <div class="well tickets" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="tickets in chunkedTickets">
-      <div class="col-sm-4 task clearfix" ng-repeat="ticket in tickets">
+      <div class="col-sm-4 clearfix" ng-repeat="ticket in tickets">
+        <div class="ticketTitle">
+         <h3>Ticket num: {{ticket.title}}</h3>
+        </div>
 
+        <div class="task" ng-class="ticket.border">
         <form name="editForm" class="editForm">
           <h4 ng-show="!ticket.edit">{{ticket.name}}</h4>
           <h4 ng-show="ticket.edit">Ticket Name:</h4>
         <input name="editForm" type="text" placeholder="Name" ng-show="ticket.edit" ng-model="edit.name"  required="required">
 
-      <p class="updated" ng-show="!ticket.edit" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</p>
+      <span class="updated" ng-show="!ticket.edit" ng-if="ticket.updated">*Edited on {{prettyDate(ticket.updated)}}</span>
+
 
       <p class="bold">Type:</p>
       <p class="type" ng-show="!ticket.edit">{{ticket.type}}</p>
@@ -63,7 +68,7 @@
 
       <p class="bold">Reporter:</p>
       <p ng-show="!ticket.edit">{{ticket.reporter}}</p>
-        <input name="editForm" type="text" placeholder="Reporter" ng-show="ticket.edit" ng-model="ticket.reporter" ng-value="edit.reporter" required="required">
+        <input name="editForm" type="text" placeholder="Reporter" ng-show="ticket.edit"  ng-model="edit.reporter" required="required">
 
       <p><span class="bold">Date Created:</span> {{prettyDate(ticket.created)}}</p>
 
@@ -73,6 +78,7 @@
       <input name="editForm" type="submit" value="Cancel" class="btn btn-default cancel" ng-show="ticket.edit" ng-click="cancelEdit(ticket)" >
 
         </form>
+      </div>
       </div>
       <!-- horiz rule -->
       <div class="clearfix"></div>

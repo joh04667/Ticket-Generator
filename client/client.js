@@ -11,6 +11,7 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
 
 // post new ticket
   $scope.createTicket = function() {
+    $scope.toggleForm();
     $http.post('/tickets/new', $scope.ticket).then(function(response) {
       console.log('saved ticket', response);
       $scope.resetForm();
@@ -22,10 +23,10 @@ app.controller("TicketController", ["$scope", "$http", function($scope, $http) {
 $scope.saveTicket = function(ticket) {
   console.log(ticket, 'save');
   $http.put('tickets/edit', ticket).then(function(response){
-    console.log($scope.allTickets);
+    console.log(response);
     $scope.getData();
   });
-  $scope.allTickets.forEach(function(s) {s.edit = false;});
+  $scope.allTickets.forEach(function(s) {s.edit = false; s.border=null;});
 };
 
 // gets all tickets on DB
@@ -33,8 +34,6 @@ $scope.getData = function() {
   $http.get('/tickets').then(function(response) {
     $scope.allTickets = response.data;
     $scope.chunkedTickets = $scope.chunk($scope.allTickets, 3);
-    $scope.nodiv = Boolean($scope.allTickets);
-    console.log($scope.nodiv);
   });
 };
 
@@ -59,13 +58,13 @@ $scope.editTicket = function(ticket) {
   // get this index and this object
   $scope.edit = $scope.allTickets[$scope.allTickets.indexOf(ticket)];
    $scope.allTickets[$scope.allTickets.indexOf(ticket)].edit = true;
-
+   $scope.allTickets[$scope.allTickets.indexOf(ticket)].border = "red";
 };
 
 $scope.cancelEdit = function(ticket) {
-  var index = $scope.allTickets.indexOf(ticket);
-  $scope.allTickets.forEach(function(s) {s.edit = false;});
+  $scope.allTickets.forEach(function(s) {s.edit = false; s.border=null;});
   $scope.getData();
+  // $scope.getData();
 };
 
 

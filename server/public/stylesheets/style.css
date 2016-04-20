@@ -7,6 +7,12 @@ a {
   color: #00B7FF;
 }
 
+.red {
+  border: 4px inset darkgreen !important;
+}
+
+
+
  .bold {
    font-weight: bold;
    margin-bottom: 4px;
@@ -16,7 +22,10 @@ a {
 
  .tickets {
    overflow: auto;
+   padding-top: 5px;
+   transition: all 1s linear;
  }
+
  .newTicket {
    margin-bottom: 20px;
  }
@@ -44,7 +53,7 @@ font-size: 15px;
 .complete {
   transition: all .25s ease-in-out;
   margin-bottom: 10px;
-
+  margin-left: 10px;
 }
 
 .complete:hover {
@@ -69,6 +78,7 @@ h4 {
   margin-bottom: 1px;
   font-size: 21px;
   font-weight: bold;
+  padding-left: 15px;
 }
 .task {
   word-wrap: break-word;
@@ -77,8 +87,8 @@ h4 {
   border: solid 1px #aaaaaa;
   border-left: -5px;
   border-right: -5px;
-  /*display: flex;
-  flex: 1 0 auto;*/
+  text-align: left;
+  padding-left: 2px;
 }
 
 .formContainer {
@@ -86,46 +96,68 @@ h4 {
   margin-bottom: 15px;
 }
 
-.type {
-  margin-top: 13px;
-}
+
 .even {
   background-color: #cce5ff;
 }
 
 .newTicket {
   max-height: 0;
-  transition: all .5s linear;
-
+  transition: max-height .5s linear;
 }
 
-.slide {
-  max-height: 1000px;
+.newform > .submit {
+  opacity: 0;
+  transition: opacity .75s ease-in
+}
+
+.slide, .slide > input {
+  max-height: 1000px !important;
   opacity: 1 !important;
-  transition: all 1s ease-in;
+  /*transition: all 1s ease-in;*/
+}
+
+.slide > .newtix {
+  width: 30%;
 }
 
 .topForm {
-  /*max-height: 0;*/
   opacity: 0;
-  transition: all .2s ease-in;
-
+  max-height: 0;
+  transition: max-height .5s linear, opacity .25s ease-in;
 }
 
 .newtix {
+  opacity: 0;
+  max-height: 0;
+  width: 5%;
   text-align: center;
-  transition: width .25s ease-in;
+  transition: width 1s ease-in .5s, max-height 10s linear, opacity 1s ease-in;
 }
-
-
 
 .newtix:focus {
   text-align:justify;
-  width: 230px;
-
 }
 
 
+
+.ticketTitle {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display:inline-block;
+}
+
+.col-sm-4 {
+  text-align: center;
+}
+
+.ticketTitle > h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: monospace;
+}
 
 hr {
   height: 1;
@@ -134,10 +166,10 @@ hr {
 .description {
   height: 23px;
   line-height: 23px;
-  transition: all .1s ease-out;
   padding-left: 0;
   padding-top: 0;
   word-break: break-all;
+
 }
 
 .description:focus {
@@ -147,6 +179,7 @@ hr {
   vertical-align: text-top;
   padding-left: 0;
   word-break: break-all;
+  transition: width .2s linear, height .60s ease-in;
 }
 
 .page-header {
@@ -156,6 +189,24 @@ hr {
 
 .editForm > input {
   width:90%;
+  display: block;
+  margin: 10px auto 10px auto;
+}
+
+.editForm > span {
+  padding-left: 20px;
+}
+
+.editForm > p:nth-of-type(2n) {
+  padding-left: 20px;
+}
+
+.editForm > p:nth-of-type(2n+1) {
+  padding-left: 7px;
+}
+
+.editForm > p:first-child {
+  margin-top: 15px;
 }
 
 .top {
